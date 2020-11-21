@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const bcrypt = require('bcryptjs')
 
+const routes = require('./routes')
+
 // -------------------------------------------------------------------------------------------
 
 const app = express()
@@ -18,9 +20,7 @@ app.use(methodOverride('_method'))
 
 // -------------------------------------------------------------------------------------------
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.use(routes)
 
 // -------------------------------------------------------------------------------------------
 
