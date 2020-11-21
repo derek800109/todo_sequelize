@@ -11,4 +11,6 @@ router.use('/users', users)
 
 // -------------------------------------------------------------------------------------------
 
+console.log('passing routes/index.js')
+
 module.exports = router
