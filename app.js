@@ -6,6 +6,10 @@ const bcrypt = require('bcryptjs')
 
 const routes = require('./routes')
 
+const db = require('./models')
+const Todo = db.Todo
+const User = db.User
+
 // -------------------------------------------------------------------------------------------
 
 const app = express()
