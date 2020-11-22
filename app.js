@@ -3,13 +3,12 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const bcrypt = require('bcryptjs')
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 
 const routes = require('./routes')
-
-const db = require('./models')
-const Todo = db.Todo
-const User = db.User
 
 // -------------------------------------------------------------------------------------------
 
@@ -19,7 +18,7 @@ const usePassport = require('./config/passport')
 // -------------------------------------------------------------------------------------------
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 // -------------------------------------------------------------------------------------------
 
@@ -33,7 +32,7 @@ app.use(methodOverride('_method'))
 // -------------------------------------------------------------------------------------------
 
 app.use(session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
