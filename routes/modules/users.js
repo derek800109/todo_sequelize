@@ -10,9 +10,9 @@ const User = db.User
 
 // -------------------------------------------------------------------------------------------
 
-router.get('/', (req, res) => {
-    res.send('hello world')
-})
+// router.get('/', (req, res) => {
+//     res.send('hello world')
+// })
 
 router.get('/login', (req, res) => {
     res.render('login')
@@ -57,7 +57,10 @@ router.post('/register', (req, res) => {
 // })
 
 router.get('/logout', (req, res) => {
-    res.send('logout')
+    // 其中的 req.logout() 是 Passport.js 提供的函式，會幫你清除 session。登出之後，我們就把使用者帶回登入頁面
+    req.logout()
+    req.flash('success_msg', '你已經成功登出。')
+    res.redirect('/users/login')
 })
 
 // -------------------------------------------------------------------------------------------
